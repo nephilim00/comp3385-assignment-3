@@ -38,14 +38,12 @@
             </ul>-->
             @else
             <ul class="navbar-nav ml-auto">
-                <!-- Add Logout link here -->
             </ul>
             @endguest
         </div>
     </div>
 </nav>
 
-{{-- Inside layouts/app.blade.php --}}
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     {{-- ... --}}
