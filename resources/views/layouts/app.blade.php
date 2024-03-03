@@ -31,11 +31,11 @@
             </ul>
             <!-- Authentication Links -->
             @guest
-            <ul class="navbar-nav ml-auto">
+           <!--<ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login.create') }}">Login</a>
                 </li>
-            </ul>
+            </ul>-->
             @else
             <ul class="navbar-nav ml-auto">
                 <!-- Add Logout link here -->
@@ -45,6 +45,28 @@
     </div>
 </nav>
 
+{{-- Inside layouts/app.blade.php --}}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    {{-- ... --}}
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        {{-- ... --}}
+        <ul class="navbar-nav ms-auto">
+            @if(Auth::check())
+                <li class="nav-item">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="nav-link btn btn-link">Logout</button>
+                    </form>
+                </li>
+            @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login.create') }}">Login</a>
+                </li>
+            @endif
+        </ul>
+    </div>
+</nav>
 
 <div class="container my-5">
     @yield('content')

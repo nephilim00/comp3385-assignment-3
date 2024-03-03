@@ -52,5 +52,8 @@ Route::post('/clients', [ClientController::class, 'store'])
     ->middleware('auth')
     ->name('clients.index');
 
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
   
     
