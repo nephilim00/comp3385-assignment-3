@@ -38,4 +38,18 @@ class ClientController extends Controller
         // Redirect to the dashboard with a success message
         return redirect()->route('dashboard')->with('success', 'Client added successfully.');
     }
+        
+
+        public function index()
+    {
+  
+    // Fetch all clients from the database
+    $clients = Client::all();
+    
+    // Pass the clients to the view
+    return view('clients.index', compact('clients'));
+    }
+
+    
+
 }

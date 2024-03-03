@@ -17,15 +17,34 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
+                    <a class="nav-link" href="{{ url('/') }}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/about') }}">About</a>
                 </li>
+                <!-- Add this line for the Dashboard link -->
+                @auth
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+                </li>
+                @endauth
             </ul>
+            <!-- Authentication Links -->
+            @guest
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login.create') }}">Login</a>
+                </li>
+            </ul>
+            @else
+            <ul class="navbar-nav ml-auto">
+                <!-- Add Logout link here -->
+            </ul>
+            @endguest
         </div>
     </div>
 </nav>
+
 
 <div class="container my-5">
     @yield('content')

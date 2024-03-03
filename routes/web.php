@@ -26,7 +26,8 @@ Route::get('/about', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        $clients = \App\Models\Client::all(); // Retrieve all clients from the database
+        return view('dashboard', compact('clients')); // Pass clients to the view
     })->name('dashboard');
 });
 
@@ -46,3 +47,10 @@ Route::get('/clients/add', [ClientController::class, 'create'])
 Route::post('/clients', [ClientController::class, 'store'])
     ->middleware('auth')
     ->name('clients.store');
+
+    Route::get('/clients', [ClientController::class, 'index'])
+    ->middleware('auth')
+    ->name('clients.index');
+
+  
+    
