@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,13 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/login', [AuthController::class, 'create'])->name('login.create');
 Route::post('/login', [AuthController::class, 'store'])->name('login.store');
 
+// Display form to add a new client
+Route::get('/clients/add', [ClientController::class, 'create'])
+    ->middleware('auth')
+    ->name('clients.create');
+
+
+// Process form submission and save new client
+Route::post('/clients', [ClientController::class, 'store'])
+    ->middleware('auth')
+    ->name('clients.store');
